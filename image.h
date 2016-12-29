@@ -1,6 +1,6 @@
 /*
 * 创建日期：2016-08-16
-* 最后修改：2016-12-23
+* 最后修改：2016-12-28
 * 作    者：syf
 * 描    述：
 */
@@ -32,6 +32,8 @@ public:
 	Mat& GetImageSrc();
 	Mat& GetImage();
 	Mat& GetRoi(int x, int y, int size);
+
+	bool LinearInterpolation(Mat &input, Mat &out, int k);
 private:
 	Mat m_imageSrc;
 	Mat m_image;

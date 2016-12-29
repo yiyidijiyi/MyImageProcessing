@@ -22,9 +22,11 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QTextEdit>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -52,15 +54,31 @@ public:
     QLineEdit *lineEdit_threshold;
     QWidget *tab_2;
     QGroupBox *groupBox;
-    QPushButton *pushButton_fill;
-    QWidget *widget;
+    QWidget *layoutWidget2;
+    QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_3;
     QLabel *label_3;
     QLineEdit *lineEdit_fillValue;
+    QHBoxLayout *horizontalLayout_5;
+    QPushButton *pushButton_fill;
+    QSpacerItem *horizontalSpacer;
+    QWidget *layoutWidget3;
+    QVBoxLayout *verticalLayout_2;
+    QHBoxLayout *horizontalLayout_4;
+    QLabel *label_4;
+    QLineEdit *lineEdit_interCoeff;
+    QHBoxLayout *horizontalLayout_6;
+    QPushButton *pushButton_interpolation;
+    QSpacerItem *horizontalSpacer_2;
     QTextEdit *textEdit;
+    QPushButton *pushButton_showImageSize;
+    QWidget *widget;
+    QHBoxLayout *horizontalLayout_8;
+    QHBoxLayout *horizontalLayout_7;
     QLabel *label;
     QLineEdit *lineEdit_windowSize;
     QPushButton *pushButton_clearTextEdit;
+    QPushButton *pushButton_saveImage;
 
     void setupUi(QWidget *Widget)
     {
@@ -115,7 +133,7 @@ public:
 
         tabWidget = new QTabWidget(Widget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        tabWidget->setGeometry(QRect(840, 230, 430, 400));
+        tabWidget->setGeometry(QRect(840, 310, 430, 400));
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
         pushButton_threshold = new QPushButton(tab);
@@ -144,41 +162,125 @@ public:
         tab_2->setObjectName(QStringLiteral("tab_2"));
         groupBox = new QGroupBox(tab_2);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setGeometry(QRect(10, 10, 405, 141));
-        pushButton_fill = new QPushButton(groupBox);
-        pushButton_fill->setObjectName(QStringLiteral("pushButton_fill"));
-        pushButton_fill->setGeometry(QRect(10, 50, 75, 23));
-        widget = new QWidget(groupBox);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 20, 121, 22));
-        horizontalLayout_3 = new QHBoxLayout(widget);
+        groupBox->setGeometry(QRect(10, 10, 405, 161));
+        layoutWidget2 = new QWidget(groupBox);
+        layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
+        layoutWidget2->setGeometry(QRect(10, 20, 121, 55));
+        verticalLayout = new QVBoxLayout(layoutWidget2);
+        verticalLayout->setSpacing(6);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(6);
-        horizontalLayout_3->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
-        label_3 = new QLabel(widget);
+        label_3 = new QLabel(layoutWidget2);
         label_3->setObjectName(QStringLiteral("label_3"));
 
         horizontalLayout_3->addWidget(label_3);
 
-        lineEdit_fillValue = new QLineEdit(widget);
+        lineEdit_fillValue = new QLineEdit(layoutWidget2);
         lineEdit_fillValue->setObjectName(QStringLiteral("lineEdit_fillValue"));
 
         horizontalLayout_3->addWidget(lineEdit_fillValue);
 
+
+        verticalLayout->addLayout(horizontalLayout_3);
+
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setSpacing(6);
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        pushButton_fill = new QPushButton(layoutWidget2);
+        pushButton_fill->setObjectName(QStringLiteral("pushButton_fill"));
+
+        horizontalLayout_5->addWidget(pushButton_fill);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer);
+
+
+        verticalLayout->addLayout(horizontalLayout_5);
+
+        layoutWidget3 = new QWidget(groupBox);
+        layoutWidget3->setObjectName(QStringLiteral("layoutWidget3"));
+        layoutWidget3->setGeometry(QRect(10, 90, 133, 55));
+        verticalLayout_2 = new QVBoxLayout(layoutWidget3);
+        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setSpacing(6);
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        label_4 = new QLabel(layoutWidget3);
+        label_4->setObjectName(QStringLiteral("label_4"));
+
+        horizontalLayout_4->addWidget(label_4);
+
+        lineEdit_interCoeff = new QLineEdit(layoutWidget3);
+        lineEdit_interCoeff->setObjectName(QStringLiteral("lineEdit_interCoeff"));
+
+        horizontalLayout_4->addWidget(lineEdit_interCoeff);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_4);
+
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setSpacing(6);
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
+        pushButton_interpolation = new QPushButton(layoutWidget3);
+        pushButton_interpolation->setObjectName(QStringLiteral("pushButton_interpolation"));
+
+        horizontalLayout_6->addWidget(pushButton_interpolation);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_2);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_6);
+
         tabWidget->addTab(tab_2, QString());
+        groupBox->raise();
         textEdit = new QTextEdit(Widget);
         textEdit->setObjectName(QStringLiteral("textEdit"));
-        textEdit->setGeometry(QRect(840, 70, 430, 150));
-        label = new QLabel(Widget);
+        textEdit->setGeometry(QRect(840, 99, 430, 201));
+        pushButton_showImageSize = new QPushButton(Widget);
+        pushButton_showImageSize->setObjectName(QStringLiteral("pushButton_showImageSize"));
+        pushButton_showImageSize->setGeometry(QRect(840, 70, 75, 23));
+        widget = new QWidget(Widget);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(1080, 40, 191, 25));
+        horizontalLayout_8 = new QHBoxLayout(widget);
+        horizontalLayout_8->setSpacing(6);
+        horizontalLayout_8->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
+        horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_7 = new QHBoxLayout();
+        horizontalLayout_7->setSpacing(6);
+        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
+        label = new QLabel(widget);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(1151, 50, 60, 20));
-        lineEdit_windowSize = new QLineEdit(Widget);
+
+        horizontalLayout_7->addWidget(label);
+
+        lineEdit_windowSize = new QLineEdit(widget);
         lineEdit_windowSize->setObjectName(QStringLiteral("lineEdit_windowSize"));
-        lineEdit_windowSize->setGeometry(QRect(1215, 50, 53, 20));
-        pushButton_clearTextEdit = new QPushButton(Widget);
+
+        horizontalLayout_7->addWidget(lineEdit_windowSize);
+
+
+        horizontalLayout_8->addLayout(horizontalLayout_7);
+
+        pushButton_clearTextEdit = new QPushButton(widget);
         pushButton_clearTextEdit->setObjectName(QStringLiteral("pushButton_clearTextEdit"));
-        pushButton_clearTextEdit->setGeometry(QRect(1070, 48, 75, 23));
+
+        horizontalLayout_8->addWidget(pushButton_clearTextEdit);
+
+        pushButton_saveImage = new QPushButton(Widget);
+        pushButton_saveImage->setObjectName(QStringLiteral("pushButton_saveImage"));
+        pushButton_saveImage->setGeometry(QRect(920, 70, 75, 23));
 
         retranslateUi(Widget);
 
@@ -200,13 +302,18 @@ public:
         label_2->setText(QApplication::translate("Widget", "\351\230\210\345\200\274\357\274\232", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("Widget", "Tab 1", 0));
         groupBox->setTitle(QApplication::translate("Widget", "\346\274\253\346\260\264\345\241\253\345\205\205", 0));
-        pushButton_fill->setText(QApplication::translate("Widget", "\345\255\224\346\264\236\345\241\253\345\205\205", 0));
         label_3->setText(QApplication::translate("Widget", "\345\241\253\345\205\205\345\200\274\357\274\232", 0));
         lineEdit_fillValue->setText(QApplication::translate("Widget", "128", 0));
+        pushButton_fill->setText(QApplication::translate("Widget", "\345\255\224\346\264\236\345\241\253\345\205\205", 0));
+        label_4->setText(QApplication::translate("Widget", "\347\272\277\346\200\247\346\217\222\345\200\274\347\263\273\346\225\260\357\274\232", 0));
+        lineEdit_interCoeff->setText(QApplication::translate("Widget", "2", 0));
+        pushButton_interpolation->setText(QApplication::translate("Widget", "\347\272\277\346\200\247\346\217\222\345\200\274", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("Widget", "Tab 2", 0));
+        pushButton_showImageSize->setText(QApplication::translate("Widget", "\345\233\276\345\203\217\345\260\272\345\257\270", 0));
         label->setText(QApplication::translate("Widget", "\347\252\227\345\217\243\345\244\247\345\260\217\357\274\232", 0));
         lineEdit_windowSize->setText(QApplication::translate("Widget", "1", 0));
         pushButton_clearTextEdit->setText(QApplication::translate("Widget", "\346\270\205\351\231\244\346\230\276\347\244\272", 0));
+        pushButton_saveImage->setText(QApplication::translate("Widget", "\344\277\235\345\255\230\345\233\276\345\203\217", 0));
     } // retranslateUi
 
 };

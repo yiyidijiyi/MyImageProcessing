@@ -1,6 +1,6 @@
 /*
-* 创建日期：2016-12-23
-* 最后修改：2016-12-24
+* 创建日期：2016-12-24
+* 最后修改：2016-12-28
 * 作    者：syf
 * 描    述：
 */
@@ -21,6 +21,7 @@ Widget::Widget(QWidget *parent)
 	ui->lineEdit_windowSize->setValidator(new QIntValidator(1, 64, this));
 	ui->lineEdit_threshold->setValidator(new QIntValidator(1, 255, this));
 	ui->lineEdit_fillValue->setValidator(new QIntValidator(0, 255, this));
+	ui->lineEdit_interCoeff->setValidator(new QIntValidator(2, 8, this));
 
 	m_pImage = new Image();
 
@@ -31,6 +32,9 @@ Widget::Widget(QWidget *parent)
 	connect(ui->pushButton_clearTextEdit, &QPushButton::clicked, ui->textEdit, &QTextEdit::clear);
 	connect(ui->pushButton_threshold, &QPushButton::clicked, this, &Widget::OnBtnThretholdClicked);
 	connect(ui->pushButton_fill, &QPushButton::clicked, this, &Widget::OnBtnFillClicked);
+	connect(ui->pushButton_interpolation, &QPushButton::clicked, this, &Widget::OnBtnLinearInterpolationClicked);
+	connect(ui->pushButton_showImageSize, &QPushButton::clicked, this, &Widget::OnBtnShowImageSizeClicked);
+	connect(ui->pushButton_saveImage, &QPushButton::clicked, this, &Widget::OnBtnSaveImageClicked);
 }
 
 
@@ -149,18 +153,16 @@ void Widget::OnBtnShowImageSrcClicked()
 */
 void  Widget::OnBtnConvertToGrayScaleClicked()
 {
-	Mat image1 = m_pImage->GetImageSrc();
-
-	if (NULL != image1.data)
+	if (NULL != m_image.data)
 	{
-		if (3 == image1.channels())
+		if (3 == m_image.channels())
 		{
-			cvtColor(image1, m_image, COLOR_BGR2GRAY);
+			cvtColor(m_image, m_image, COLOR_BGR2GRAY);
 			ShowImage(m_image);
 
 			ui->textBrowser_message->setText(QStringLiteral("转换完成！"));
 		}
-		else if (1 == image1.channels())
+		else if (1 == m_image.channels())
 		{
 			ui->textBrowser_message->setText(QStringLiteral("原图为灰度图，无需转换！"));
 		}
@@ -229,6 +231,65 @@ void Widget::OnBtnFillClicked()
 		ShowImage(m_image);
 
 		ui->textBrowser_message->setText(QStringLiteral("填充完成！"));
+	}
+}
+
+/*
+* 参数：
+* 返回：
+* 功能：槽函数，线性插值
+*/
+void Widget::OnBtnLinearInterpolationClicked()
+{
+	int k = ui->lineEdit_interCoeff->text().toInt();
+	Mat out;
+	m_pImage->LinearInterpolation(m_image, out, k);
+	out.copyTo(m_image);
+	ShowImage(m_image);
+}
+
+/*
+* 参数：
+* 返回：
+* 功能：槽函数，显示图像尺寸大小
+*/
+void Widget::OnBtnShowImageSizeClicked()
+{
+	if (NULL != m_image.data)
+	{
+		ui->textEdit->append(QStringLiteral("图像宽度为：") + QString::number(m_image.cols));
+		ui->textEdit->append(QStringLiteral("图像高度为：") + QString::number(m_image.rows));
+		ui->textEdit->append("    ");
+	}
+	else
+	{
+		ui->textEdit->append(QStringLiteral("无图像数据!"));
+		ui->textEdit->append("    ");
+	}
+}
+
+/*
+* 参数：
+* 返回：
+* 功能：槽函数，保存图片
+*/
+void Widget::OnBtnSaveImageClicked()
+{
+	if (NULL != m_image.data)
+	{
+		QString fileName = QFileDialog::getSaveFileName(this, QStringLiteral("保存图片"), "1", "(*.bmp)");
+
+		
+		//vector<int> params;
+		//params.push_back(IMWRITE_JPEG_QUALITY);
+		if (!fileName.isNull())
+		{
+			imwrite(fileName.toStdString(), m_image);
+		}	
+	}
+	else
+	{
+		ui->textBrowser_message->setText(QStringLiteral("图像数据为空，无法保存！"));
 	}
 }
 

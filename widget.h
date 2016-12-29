@@ -1,6 +1,6 @@
 /*
 * 创建日期：2016-12-23
-* 最后修改：2016-12-24
+* 最后修改：2016-12-28
 * 作    者：syf
 * 描    述：
 */
@@ -11,6 +11,7 @@
 #include <QFileDialog>
 #include <QMouseEvent>
 #include <QScrollBar>
+#include <QFileDialog>
 
 #include <image.h>
 
@@ -34,6 +35,9 @@ public slots:
 	void OnBtnConvertToGrayScaleClicked();
 	void OnBtnThretholdClicked();
 	void OnBtnFillClicked();
+	void OnBtnLinearInterpolationClicked();
+	void OnBtnShowImageSizeClicked();
+	void OnBtnSaveImageClicked();
 protected:
 	void mousePressEvent(QMouseEvent* event);
 
